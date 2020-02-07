@@ -1,0 +1,1 @@
+Find tutorials and complete them on react native in order to start creating the base code that our app will run on.
