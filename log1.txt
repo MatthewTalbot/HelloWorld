@@ -1,2 +1,0 @@
-Learning React Native, also working with the scanner api.
-
