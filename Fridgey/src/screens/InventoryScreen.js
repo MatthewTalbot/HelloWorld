@@ -40,7 +40,6 @@ const InventoryScreen = () => {
     if(i == itemList.length){
       addToList([...itemList, item]);
     }
-    console.log(itemList);
   };
 
   const [isDeleteMode, setDeleteMode ] = useState(false);
@@ -60,7 +59,6 @@ const InventoryScreen = () => {
       else if(itemList[i].name == item.name && itemList[i].quantity > item.quantity){
         Alert.alert('', 'Item Deleted', [{text: 'Okay'}] );
         itemList[i].quantity -= item.quantity;
-        console.log(itemList);
       }
     }
 
