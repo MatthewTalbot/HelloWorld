@@ -72,7 +72,7 @@ const InventoryScreen = () => {
       <TextInput placeholder= "Enter item quantity" onChangeText = {quantityInputHandler} value ={enteredQuantity} keyboardType = 'numeric'/>
       <TextInput placeholder= "Enter item price" onChangeText = {priceInputHandler} value = {enteredPrice} keyboardType = 'numeric'/>
       <DatePicker
-        style={StyleSheet.viewScreen}
+        style={styles.viewScreen}
         date={enteredExpiry}
         mode="date"
         placeholder="Select Expiry Date"
@@ -80,8 +80,8 @@ const InventoryScreen = () => {
         confirmBtnText="Confirm"
         cancelBtnText="Cancel"
         customStyles={
-          StyleSheet.dateIcon,
-          StyleSheet.dateInput
+          styles.dateIcon,
+          styles.dateInput
         }
         onDateChange={(date)=>{expiryInputHandler(date)}}
       />
