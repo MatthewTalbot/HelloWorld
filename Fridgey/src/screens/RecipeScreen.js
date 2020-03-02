@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import {
   ScrollView,
@@ -118,33 +117,7 @@ class RecipeScreen extends React.Component {
     );
   }
 }
-=======
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
-import { SearchBar } from "react-native-elements";
 
-const RecipeScreen = () => {
-  const API_KEY = "dedef814c2f44537b5c5c16d6c993941";
-  const exampleReq = `https://api.spoonacular.com/recipes/search?query=cheese&apiKey=${API_KEY}`;
-
-  const getRecipes = async () => {
-    const response = await fetch(exampleReq);
-    const data = await response.json();
-    console.log(data);
-  };
-
-  useEffect(() => {
-    console.log("working");
-    getRecipes();
-  }, []);
-
-  return (
-    <View>
-      <SearchBar> Search</SearchBar>
-    </View>
-  );
-};
->>>>>>> 727b0d61e0d6a87cb38d538d80d9acc51006e8a6
 
 /* const cards = async () => {
 const req = `https://api.spoonacular.com/recipes/random?number=4&apiKey=${API_KEY}`;
@@ -195,7 +168,6 @@ const TitleBar = styled.View`
   padding-left: 80px;
 `;
 
-<<<<<<< HEAD
 const TopBar = styled.View`
   margin-left: 20px;
   padding-top: 40px;
@@ -218,6 +190,5 @@ const cards = [
     image: require("../../assets/background14.jpg")
   }
 ];
-=======
-export default RecipeScreen;
->>>>>>> 727b0d61e0d6a87cb38d538d80d9acc51006e8a6
+
+
