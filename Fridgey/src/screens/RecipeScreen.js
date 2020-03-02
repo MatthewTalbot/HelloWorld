@@ -103,10 +103,16 @@ class RecipeScreen extends React.Component {
                   <TouchableOpacity
                     key={index}
                     onPress={() => {
-                      this.props.navigation.push("RecipeFull");
+                      this.props.navigation.push("RecipeFull", {
+                        recipeFull: card
+                      });
                     }}
                   >
-                    <Card title={card.title} image={card.image} />
+                    <Card
+                      title={card.title}
+                      image={card.image}
+                      text={card.ingrediants}
+                    />
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -117,7 +123,6 @@ class RecipeScreen extends React.Component {
     );
   }
 }
-
 
 /* const cards = async () => {
 const req = `https://api.spoonacular.com/recipes/random?number=4&apiKey=${API_KEY}`;
@@ -145,7 +150,8 @@ const Subtitle = styled.Text`
 const Container = styled.View`
   flex: 1;
   background-color: #f0f3f5;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `;
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
@@ -175,11 +181,15 @@ const TopBar = styled.View`
 const cards = [
   {
     title: "Apple pie",
-    image: require("../../assets/background11.jpg")
+    image: require("../../assets/background11.jpg"),
+    ingrediants:
+      "Ingrediants \n 1 recipe pastry for a 9 inch double crust pie  \n½ cup unsalted butter \n3 tablespoons all-purpose flour \n¼ cup of water \n½ cup of white sugar \n½ cup packed brown sugar \n8 Granny Smith apples - peeled, cored and sliced"
   },
   {
     title: "Mac and Cheese",
-    image: require("../../assets/background12.jpg")
+    image: require("../../assets/background12.jpg"),
+    ingrediants:
+      " Ingrediants \n 16 oz elbow macaroni, cooked (or other tubular pasta)\n1 tbsp extra virgin olive oil\n6 tbsp unsalted butter\n1/3 cup all purpose flour\n3 cups whole milk\n1 cup heavy whipping cream\n4 cups sharp cheddar cheese shredded\n2 cups Gruyere cheese shredded\nsalt and pepper to taste\n1 1/2 cups panko crumbs\n4 tbsp butter melted\n1/2 cup Parmesan cheese shredded\n1/4 tsp smoked paprika (or regular paprika)"
   },
   {
     title: "Steak with veggies",
@@ -190,5 +200,3 @@ const cards = [
     image: require("../../assets/background14.jpg")
   }
 ];
-
-

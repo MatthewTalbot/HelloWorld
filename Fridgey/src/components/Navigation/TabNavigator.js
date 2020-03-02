@@ -4,6 +4,7 @@ import HomeScreen from "../../screens/HomeScreen";
 import BudgetScreen from "../../screens/BudgetScreen";
 import InventoryScreen from "../../screens/InventoryScreen";
 import RecipeScreen from "../../screens/RecipeScreen";
+import RecipeFullCard from "../../screens/RecipeFullCard";
 import { Ionicons } from "@expo/vector-icons";
 
 import { createStackNavigator } from "react-navigation-stack";
@@ -27,7 +28,8 @@ HomeStack.navigationOptions = {
 };
 
 const RecipePage = createStackNavigator({
-  Recipe: RecipeScreen
+  Recipe: RecipeScreen,
+  RecipeFull: RecipeFullCard
 });
 
 RecipePage.navigationOptions = {
