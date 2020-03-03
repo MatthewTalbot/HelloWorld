@@ -7,7 +7,7 @@ const HomeScreen = ({ navigation }) => {
 			<Text>HomeScreen</Text>
 			<Button 
 				title = "Budget"
-				onPress = { () => navigation.navigate('Budget')}
+				onPress = { () => navigation.navigate('Budget', {spending: 0})}
 			/>
 			<Button 
 				title = "Inventory"

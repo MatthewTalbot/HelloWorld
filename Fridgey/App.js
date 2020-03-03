@@ -4,13 +4,15 @@ import HomeScreen from './src/screens/HomeScreen';
 import BudgetScreen from './src/screens/BudgetScreen';
 import InventoryScreen from './src/screens/InventoryScreen';
 import RecipeScreen from './src/screens/RecipeScreen';
+import weeklySpendingScreen from './src/screens/weeklySpendingScreen'
 
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
     Budget: BudgetScreen,
     Inventory: InventoryScreen,
-    Recipe: RecipeScreen
+    Recipe: RecipeScreen,
+    Spending: weeklySpendingScreen
   },
   {
     initialRouteName: "Home",
