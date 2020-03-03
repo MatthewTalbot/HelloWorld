@@ -1,26 +1,29 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import HomeScreen from './src/screens/HomeScreen';
-import BudgetScreen from './src/screens/BudgetScreen';
-import InventoryScreen from './src/screens/InventoryScreen';
-import RecipeScreen from './src/screens/RecipeScreen';
-import weeklySpendingScreen from './src/screens/weeklySpendingScreen'
+import React from "react";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import AppNavigation from "./src/components/Navigation/AppNavigation";
 
-const navigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Budget: BudgetScreen,
-    Inventory: InventoryScreen,
-    Recipe: RecipeScreen,
-    Spending: weeklySpendingScreen
-  },
-  {
-    initialRouteName: "Home",
-    defaultNavigationOptions: {
-      title: "App"
-    }
+const initialState = {
+  action: ""
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "OPEN_MENU":
+      return { action: "openMenu" };
+    case "CLOSE_MENU":
+      return { action: "closeMenu" };
+    default:
+      return state;
   }
+};
+
+const store = createStore(reducer);
+
+const App = () => (
+  <Provider store={store}>
+    <AppNavigation />
+  </Provider>
 );
 
-export default createAppContainer(navigator);
-
+export default App;
