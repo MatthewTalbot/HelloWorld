@@ -84,12 +84,6 @@ class RecipeScreen extends React.Component {
             opacity: this.state.opacity
           }}
         >
-          <TopBar>
-            <TouchableOpacity onPress={this.props.openMenu}>
-              <Ionicons name="ios-menu" size={40} />
-            </TouchableOpacity>
-          </TopBar>
-
           <SafeAreaView>
             <ScrollView style={{ height: "100%" }}>
               <SearchBar> Search</SearchBar>
@@ -116,6 +110,7 @@ class RecipeScreen extends React.Component {
                   </TouchableOpacity>
                 ))}
               </ScrollView>
+              <Subtitle>What's popular</Subtitle>
             </ScrollView>
           </SafeAreaView>
         </AnimatedContainer>

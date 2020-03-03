@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import InventoryDeletion from "../screens/InventoryDeletion";
 import DatePicker from "react-native-datepicker";
+import styled from "styled-components";
+import { Ionicons } from "@expo/vector-icons";
 
 const InventoryScreen = () => {
   const [itemList, addToList] = useState([]); //itemList is our main list of items to add and delete from
@@ -89,45 +91,88 @@ const InventoryScreen = () => {
         onDeleteItem={deleteItemHandler}
         setDeleteMode={setDeleteMode}
       />
-      <TextInput
-        placeholder="Enter item name"
-        onChangeText={nameInputHandler}
-        value={enteredName}
-      />
-      <TextInput
-        placeholder="Enter item quantity"
-        onChangeText={quantityInputHandler}
-        value={enteredQuantity}
-        keyboardType="numeric"
-      />
-      <TextInput
-        placeholder="Enter item price"
-        onChangeText={priceInputHandler}
-        value={enteredPrice}
-        keyboardType="numeric"
-      />
-      <DatePicker
-        style={styles.viewScreen}
-        date={enteredExpiry}
-        mode="date"
-        placeholder="Select Expiry Date"
-        format="YYYY-MM-DD"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={(styles.dateIcon, styles.dateInput)}
-        onDateChange={date => {
-          expiryInputHandler(date);
-        }}
-      />
-      <Button title="Add" onPress={addItemHandler} />
+      <Container>
+        <Text
+          style={{
+            color: "#4775f2",
+            fontWeight: "600",
+            fontSize: 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            marginLeft: 20
+          }}
+        >
+          {" "}
+          Add a item
+        </Text>
+        <SearchFieldContainer>
+          <TextInput
+            placeholder="Enter item name"
+            placeholderTextColor="black"
+            onChangeText={nameInputHandler}
+            value={enteredName}
+            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          />
+          <TextInput
+            placeholder="Enter item quantity"
+            placeholderTextColor="black"
+            onChangeText={quantityInputHandler}
+            value={enteredQuantity}
+            keyboardType="numeric"
+            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          />
+          <TextInput
+            placeholder="Enter item price"
+            placeholderTextColor="black"
+            onChangeText={priceInputHandler}
+            value={enteredPrice}
+            keyboardType="numeric"
+            style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+          />
+          <DatePicker
+            style={styles.viewScreen}
+            date={enteredExpiry}
+            mode="date"
+            placeholder="Select Expiry Date"
+            format="YYYY-MM-DD"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"
+            customStyles={(styles.dateIcon, styles.dateInput)}
+            onDateChange={date => {
+              expiryInputHandler(date);
+            }}
+          />
+          <Ionicons
+            name="ios-add"
+            size={40}
+            color="#546bfb"
+            style={{ paddingLeft: 300 }}
+            onPress={addItemHandler}
+          />
+        </SearchFieldContainer>
+      </Container>
       <Button title="Delete" onPress={() => setDeleteMode(true)} />
+
+      <Text
+        style={{
+          color: "#4775f2",
+          fontWeight: "600",
+          fontSize: 20,
+          paddingTop: 20,
+          paddingBottom: 20,
+          marginLeft: 20
+        }}
+      >
+        {" "}
+        Inventory list
+      </Text>
       <FlatList
         keyExtractor={(item, index) => item.name}
         data={itemList}
         extraData={itemList.state}
         renderItem={itemData => (
           <View>
-            <Text>
+            <Text style={{ marginLeft: 20 }}>
               {itemData.item.name +
                 " " +
                 itemData.item.quantity +
@@ -157,3 +202,18 @@ const styles = StyleSheet.create({
 });
 
 export default InventoryScreen;
+
+const Container = styled.View`
+  background: white;
+  width: 370px;
+  height: 280px;
+  border-radius: 14px;
+  margin-left: 20px;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+`;
+
+const SearchFieldContainer = styled.View`
+  margin-left: 20px;
+  margin-right: 20px;
+`;

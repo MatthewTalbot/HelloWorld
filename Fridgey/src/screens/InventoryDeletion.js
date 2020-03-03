@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  FlatList,
-  Modal
-} from "react-native";
+import { Text, StyleSheet, View, TextInput, Button, Modal } from "react-native";
 
 const InventoryDeletion = props => {
   const [enteredName, setEnteredName] = useState("");
@@ -30,14 +22,18 @@ const InventoryDeletion = props => {
     >
       <View>
         <TextInput
-          placeholder="Enter item name"
+          placeholder="Enter item to be removed"
+          placeholderTextColor="black"
           onChangeText={nameInputHandler}
           value={enteredName}
+          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
         />
         <TextInput
-          placeholder="Enter item quantity"
+          placeholder="Enter item quantity to be removed"
+          placeholderTextColor="black"
           onChangeText={quantityInputHandler}
           value={enteredQuantity}
+          style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
         />
         <Button
           title="Delete"
