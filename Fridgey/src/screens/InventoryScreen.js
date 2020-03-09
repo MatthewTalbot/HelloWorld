@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { Text, StyleSheet, View, TextInput, Button, FlatList, Alert } from "react-native";
+import { Text, StyleSheet, View, TextInput, Button, FlatList, Alert, Picker } from "react-native";
 import InventoryDeletion from '../screens/InventoryDeletion';
-import DatePicker from 'react-native-datepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const InventoryScreen = () => {
 
@@ -26,10 +26,14 @@ const InventoryScreen = () => {
   const expiryInputHandler = (date) =>{
     setEnteredExpiry(date);
   }
+  const [enteredCategory, setEnteredCategory]= useState('');
+  const categoryInputHandler =(enteredText)=>{
+    setEnteredCategory(enteredText);
+  }
 
 
   const addItemHandler = () =>{
-    const item = {name : enteredName, quantity:enteredQuantity, price: enteredPrice, expiry: enteredExpiry, expired: false}
+    const item = {name : enteredName, quantity:enteredQuantity, price: enteredPrice, expiry: enteredExpiry, category:enteredCategory}
     var i;
     for( i= 0 ; i <itemList.length; i++){
       if (itemList[i].name == item.name && itemList[i].expiry === item.expiry){
@@ -43,6 +47,8 @@ const InventoryScreen = () => {
   };
 
   const [isDeleteMode, setDeleteMode ] = useState(false);
+
+  const[show, setShow] = useState(false);
 
   const deleteItemHandler= item =>{
     for(var i = 0; i < itemList.length; i++){
@@ -63,6 +69,10 @@ const InventoryScreen = () => {
     }
 
   };
+  const onChangeExpiry = value=>{
+    setShow(false);
+    expiryInputHandler(value);
+  }
 
 
   return(
@@ -71,20 +81,23 @@ const InventoryScreen = () => {
       <TextInput placeholder= "Enter item name" onChangeText = {nameInputHandler} value ={enteredName} />
       <TextInput placeholder= "Enter item quantity" onChangeText = {quantityInputHandler} value ={enteredQuantity} keyboardType = 'numeric'/>
       <TextInput placeholder= "Enter item price" onChangeText = {priceInputHandler} value = {enteredPrice} keyboardType = 'numeric'/>
-      <DatePicker
-        style={styles.viewScreen}
-        date={enteredExpiry}
-        mode="date"
-        placeholder="Select Expiry Date"
-        format="YYYY-MM-DD"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={
-          styles.dateIcon,
-          styles.dateInput
+      {show &&
+        (<DateTimePicker
+          value = {enteredExpiry}
+          mode="date"
+          onChange={(value)=> onChangeExpiry(value)}
+          />)
         }
-        onDateChange={(date)=>{expiryInputHandler(date)}}
-      />
+      <Button title= "Click to set date" onPress ={() => setShow(true)} />
+      <Picker
+        style={{flex: 1, justifyContent: "center", margin:30}}
+        placeholder= "Enter a category"
+        selectValue = {enteredCategory}
+        onValueChange= {(itemValue) => {categoryInputHandler(itemValue.value)}}>
+
+        <Picker.Item label="Produce" value ="Produce" />
+        <Picker.Item label="Dry Food" value= "Dry Food"/>
+      </Picker>
       <Button title= "Add" onPress={addItemHandler}/>
       <Button title= "Delete" onPress= {() => setDeleteMode(true)} />
       <FlatList
