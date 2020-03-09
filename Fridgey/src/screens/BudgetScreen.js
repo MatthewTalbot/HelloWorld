@@ -1,33 +1,29 @@
 import React,  { useState } from "react";
-import { Text, StyleSheet, View, TextInput, Button } from "react-native";
-import {BudgetTracker} from '../components/application_data/BudgetTracker';
+import { Text, StyleSheet, View, TextInput } from "react-native";
+import WeeklySpendingScreen from '../components/WeeklySpendingScreen';
 
 
-const BudgetScreen = ({navigation}) => {
-	const [monthlyBudget, setMonthlyBudget] = useState(BudgetTracker.monthlyBudget);
+const BudgetScreen = () => {
+	const [weeklySpending, setWeeklySpending] = useState(0);
+	const [monthlyBudget, setMonthlyBudget] = useState(0);
 
 	return (
 		<View>
-			<Text>Set Monthly Budget</Text>
+			<Text>Monthly Budget</Text>
 			<TextInput 
 				style = {styles.textInput}
+				placeholder = "Budget"
 				keyboardType = 'numeric'
-				onChangeText = {(inputBudget) => {
-					setMonthlyBudget(inputBudget)
-					BudgetTracker = {...BudgetTracker, {monthlyBudget: {monthlyBudget}}}
-					}
-				}
+				onChangeText = {(updatedBudget) => setMonthlyBudget(updatedBudget) }
 			/>
-			<Button 
-				title = "Spent this week"
-				onPress = {() => navigation.navigate('Spending')}
+			<WeeklySpendingScreen 
+				value = {weeklySpending}
+				onWeeklySpendingChange = {(newWeeklySpending) => setWeeklySpending(newWeeklySpending)}
 			/>
 			<Text>
-				Remaining Budget: {monthlyBudget}
+				Remaining Budget: {monthlyBudget-weeklySpending}
 			</Text>
-			<Text>
-				Weekly Spending: {BudgetTracker.weeklySpending}
-			</Text>
+			<Text>Weekly Spending: {weeklySpending}</Text>
 		</View>
 	)
 }
@@ -36,7 +32,8 @@ const styles = StyleSheet.create({
 		textInput: {
 			margin: 20,
 			borderColor: 'black',
-			borderWidth: 1
+			borderWidth: 1,
+			backgroundColor: '#F0EEEE'
 	}
 });
 
