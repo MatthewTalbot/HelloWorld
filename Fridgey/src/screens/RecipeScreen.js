@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ScrollView,
   SafeAreaView,
@@ -13,8 +13,18 @@ import Card from "../components/Card/Card";
 import Menu from "../components/Menu/Menu";
 import { connect } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
+import Recipe from "../components/Recipe/Recipe";
 
-const API_KEY = "dedef814c2f44537b5c5c16d6c993941";
+const YOUR_API_KEY = "5bcac43624cd4fde163db0d5b37859e3";
+const YOUR_APP_ID = "53c99899";
+
+
+const getRecipes = async () => {
+  const req = `https://api.edamam.com/search?q=random&app_id=${YOUR_APP_ID}&app_key=${YOUR_API_KEY}&from=0&to=1`;
+  const response = await fetch(req);
+  const data = await response.json();
+  setRecipes(data.hits);
+};
 
 function mapStateToProps(state) {
   return { action: state.action };
@@ -40,6 +50,7 @@ class RecipeScreen extends React.Component {
 
   componentDidMount() {
     StatusBar.setBarStyle("dark-content", true);
+    getRecipes();
   }
 
   componentDidUpdate() {
@@ -110,7 +121,18 @@ class RecipeScreen extends React.Component {
                   </TouchableOpacity>
                 ))}
               </ScrollView>
-              <Subtitle>What's popular</Subtitle>
+              <Subtitle>Random</Subtitle>
+
+              <ScrollView
+                horizontal={true}
+                style={{ paddingBottom: 30 }}
+                showsHorizontalScrollIndicator={false}
+              >
+                {recipes.map(recipe => (
+                  <Recipe />
+                ))}
+                ;
+              </ScrollView>
             </ScrollView>
           </SafeAreaView>
         </AnimatedContainer>
@@ -118,13 +140,6 @@ class RecipeScreen extends React.Component {
     );
   }
 }
-
-/* const cards = async () => {
-const req = `https://api.spoonacular.com/recipes/random?number=4&apiKey=${API_KEY}`;
-const response = await fetch(req);
-const data = await response.json();
-console.log(data);
-}; */
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeScreen);
 
