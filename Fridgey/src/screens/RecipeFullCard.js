@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 class RecipeFullCard extends React.Component {
   static navigationOptions = {
-    header: null
+    headerShown: false
   };
 
   componentDidMount() {

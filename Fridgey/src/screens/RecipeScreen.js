@@ -9,12 +9,10 @@ import {
 } from "react-native";
 import styled from "styled-components";
 import { SearchBar } from "react-native-elements";
-import Card from "../components/Card/Card";
+
 import Menu from "../components/Menu/Menu";
 import { connect } from "react-redux";
-import { Ionicons } from "@expo/vector-icons";
-
-const API_KEY = "dedef814c2f44537b5c5c16d6c993941";
+import Recipe from "../components/Recipe/Recipe";
 
 function mapStateToProps(state) {
   return { action: state.action };
@@ -84,37 +82,16 @@ class RecipeScreen extends React.Component {
             opacity: this.state.opacity
           }}
         >
-          <TopBar>
-            <TouchableOpacity onPress={this.props.openMenu}>
-              <Ionicons name="ios-menu" size={40} />
-            </TouchableOpacity>
-          </TopBar>
-
           <SafeAreaView>
             <ScrollView style={{ height: "100%" }}>
               <SearchBar> Search</SearchBar>
-              <Subtitle>Based on what's in your inventory</Subtitle>
+              <Subtitle>Recommended Recipes</Subtitle>
               <ScrollView
                 horizontal={true}
                 style={{ paddingBottom: 30 }}
                 showsHorizontalScrollIndicator={false}
               >
-                {cards.map((card, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("RecipeFull", {
-                        recipeFull: card
-                      });
-                    }}
-                  >
-                    <Card
-                      title={card.title}
-                      image={card.image}
-                      text={card.ingrediants}
-                    />
-                  </TouchableOpacity>
-                ))}
+                <Recipe></Recipe>
               </ScrollView>
             </ScrollView>
           </SafeAreaView>
@@ -123,13 +100,6 @@ class RecipeScreen extends React.Component {
     );
   }
 }
-
-/* const cards = async () => {
-const req = `https://api.spoonacular.com/recipes/random?number=4&apiKey=${API_KEY}`;
-const response = await fetch(req);
-const data = await response.json();
-console.log(data);
-}; */
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeScreen);
 
@@ -156,28 +126,6 @@ const Container = styled.View`
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
-const Title = styled.Text`
-  font-size: 16px;
-  color: #b8bece;
-  font-weight: 500;
-`;
-
-const Name = styled.Text`
-  font-size: 20px;
-  color: #3c4560;
-  font-weight: bold;
-`;
-
-const TitleBar = styled.View`
-  width: 100%;
-  margin-top: 50px;
-  padding-left: 80px;
-`;
-
-const TopBar = styled.View`
-  margin-left: 20px;
-  padding-top: 40px;
-`;
 const cards = [
   {
     title: "Apple pie",
