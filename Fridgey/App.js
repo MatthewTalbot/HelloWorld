@@ -1,29 +1,44 @@
-import React from "react";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import AppNavigation from "./src/components/Navigation/AppNavigation";
+import {createAppContainer, createSwitchNavigator} from 'react-native-navigation'
+import {createStackNavigator} from 'react-native-stack'
+import LoadingScreen from './screens/LoadingScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
+import HomeScreen from './screens/HomeScreen'
 
-const initialState = {
-  action: ""
-};
+import * as firebase from 'firebase'
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "OPEN_MENU":
-      return { action: "openMenu" };
-    case "CLOSE_MENU":
-      return { action: "closeMenu" };
-    default:
-      return state;
-  }
-};
+  var firebaseConfig = {
+    apiKey: "AIzaSyBECpMgJNvvY3CQ6mAT_ebM7qagdjHTDbs",
+    authDomain: "fridgy-app-f1736.firebaseapp.com",
+    databaseURL: "https://fridgy-app-f1736.firebaseio.com",
+    projectId: "fridgy-app-f1736",
+    storageBucket: "fridgy-app-f1736.appspot.com",
+    messagingSenderId: "906891702720",
+    appId: "1:906891702720:web:1e7c7ebd62da66c373d825"
+  };
 
-const store = createStore(reducer);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
 
-const App = () => (
-  <Provider store={store}>
-    <AppNavigation />
-  </Provider>
-);
+  const AppStack = createStackNavigator ({
+    Home: HomeScreen
+  });
 
-export default App;
+  const AuthStack = createStackNavigator ({
+    Login: LoginScreen,
+    RegisterScreen: RegisterScreen
+  });
+
+  export default createAppContainer (
+    createSwitchNavigator ( 
+      {
+        Loading: LoadingScreen, 
+        App: AppStack,
+        Auth: AuthStack
+      },
+      {
+        initialRouteName: "Loading"
+      }
+    )
+  );
+
