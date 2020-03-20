@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import styled from "styled-components";
 import { SearchBar } from "react-native-elements";
-import Card from "../components/Card/Card";
+
 import Menu from "../components/Menu/Menu";
 import { connect } from "react-redux";
 import Recipe from "../components/Recipe/Recipe";

@@ -50,7 +50,6 @@ class Menu extends React.Component {
     return (
       <AnimatedContainer style={{ top: this.state.top }}>
         <Cover>
-          <Image source={require("../../../assets/background2.jpg")} />
           <Title>Johnavan Thomas</Title>
         </Cover>
         <TouchableOpacity
