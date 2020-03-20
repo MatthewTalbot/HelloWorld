@@ -10,7 +10,7 @@ import {
   disableYellowBox
 } from "react-native";
 import styled from "styled-components";
-import Card from "../components/Card/Card";
+import HomeScreenCard from "../components/Card/HomeScreenCard";
 import Menu from "../components/Menu/Menu";
 import { connect } from "react-redux";
 
@@ -103,7 +103,7 @@ class HomeScreen extends React.Component {
                   showsHorizontalScrollIndicator={false}
                 >
                   {cards.map((card, index) => (
-                    <Card
+                    <HomeScreenCard
                       key={index}
                       title={card.title}
                       image={card.image}

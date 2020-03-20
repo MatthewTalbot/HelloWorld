@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   ScrollView,
   SafeAreaView,
@@ -12,19 +12,7 @@ import { SearchBar } from "react-native-elements";
 import Card from "../components/Card/Card";
 import Menu from "../components/Menu/Menu";
 import { connect } from "react-redux";
-import { Ionicons } from "@expo/vector-icons";
 import Recipe from "../components/Recipe/Recipe";
-
-const YOUR_API_KEY = "5bcac43624cd4fde163db0d5b37859e3";
-const YOUR_APP_ID = "53c99899";
-
-
-const getRecipes = async () => {
-  const req = `https://api.edamam.com/search?q=random&app_id=${YOUR_APP_ID}&app_key=${YOUR_API_KEY}&from=0&to=1`;
-  const response = await fetch(req);
-  const data = await response.json();
-  setRecipes(data.hits);
-};
 
 function mapStateToProps(state) {
   return { action: state.action };
@@ -50,7 +38,6 @@ class RecipeScreen extends React.Component {
 
   componentDidMount() {
     StatusBar.setBarStyle("dark-content", true);
-    getRecipes();
   }
 
   componentDidUpdate() {
@@ -98,40 +85,13 @@ class RecipeScreen extends React.Component {
           <SafeAreaView>
             <ScrollView style={{ height: "100%" }}>
               <SearchBar> Search</SearchBar>
-              <Subtitle>Based on what's in your inventory</Subtitle>
+              <Subtitle>Recommended Recipes</Subtitle>
               <ScrollView
                 horizontal={true}
                 style={{ paddingBottom: 30 }}
                 showsHorizontalScrollIndicator={false}
               >
-                {cards.map((card, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => {
-                      this.props.navigation.push("RecipeFull", {
-                        recipeFull: card
-                      });
-                    }}
-                  >
-                    <Card
-                      title={card.title}
-                      image={card.image}
-                      text={card.ingrediants}
-                    />
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-              <Subtitle>Random</Subtitle>
-
-              <ScrollView
-                horizontal={true}
-                style={{ paddingBottom: 30 }}
-                showsHorizontalScrollIndicator={false}
-              >
-                {recipes.map(recipe => (
-                  <Recipe />
-                ))}
-                ;
+                <Recipe></Recipe>
               </ScrollView>
             </ScrollView>
           </SafeAreaView>
@@ -166,28 +126,6 @@ const Container = styled.View`
 
 const AnimatedContainer = Animated.createAnimatedComponent(Container);
 
-const Title = styled.Text`
-  font-size: 16px;
-  color: #b8bece;
-  font-weight: 500;
-`;
-
-const Name = styled.Text`
-  font-size: 20px;
-  color: #3c4560;
-  font-weight: bold;
-`;
-
-const TitleBar = styled.View`
-  width: 100%;
-  margin-top: 50px;
-  padding-left: 80px;
-`;
-
-const TopBar = styled.View`
-  margin-left: 20px;
-  padding-top: 40px;
-`;
 const cards = [
   {
     title: "Apple pie",
