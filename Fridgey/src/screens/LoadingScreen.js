@@ -1,5 +1,10 @@
 import React from 'react'
-import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
+import {
+    View, 
+    Text, 
+    StyleSheet, 
+    ActivityIndicator
+} from "react-native"
 
 export default class LoadingScreen extends React.Component {
     componentDidMount() {

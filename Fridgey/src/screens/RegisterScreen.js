@@ -1,6 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import * as firebase from "firebase";
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    TextInput, 
+    TouchableOpacity 
+} from "react-native";
+
+// If line above doesn't compline try uncomment and comment below. 
+import * as firebase from 'firebase';
 
 export default class RegisterScreen extends React.Component {
     state = {
@@ -12,23 +20,23 @@ export default class RegisterScreen extends React.Component {
 
     handleSignUp = () => {
         firebase
-            .auth ()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name
-                )};
-            })
-            .catch(error => this.setState({ errorMessage: error.message }));
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(userCredentials => {
+            return userCredentials.user.updateProfile({
+                displayName: this.state.name
+            });
+        })
+        .catch(error => this.setState({ errorMessage: error.message}));
     };
-
+    
     render() {
         return (
             <View style={styles.container}>
-                <Text style={style.greeting}>{'Hello! Sign-up Here To Get Started'}</Text>
+                <Text style={style.greeting}>{'Hello! Sing-up Here To Get Started'}</Text>
 
                 <View style={styles.errorMessage}>
-                    {this.state.errorMessage && <Text style={style.error}>{this.state.errorMessage}</Text>}
+                    {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
                 </View>
 
                 <View style={styles.form}>
@@ -74,43 +82,49 @@ export default class RegisterScreen extends React.Component {
                         New To Fridgy? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Login</Text>
                     </Text>
                 </TouchableOpacity>
-
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    
     container: {
         flex: 1,
     }, 
+    
     greeting: {
         marginTop: 32,
         frontSize: 18, 
         fontWeight: "400",
         textAlign: "center"
     },
+    
     errorMessage: {
         height: 72,
         alignItems: "center",
         justifyContent: "center",
         marginHorizontal: 30
     },
+    
     error: {
         color: "#E9446A",
         fontSize: 13,
         fontWeight: "600",
         textAlign: "center"
     }, 
+    
     form: {
         marginBottom: 48,
         marginHorizontal: 30
     }, 
+    
     inputTitle: {
         color: "#8A8F9E",
         fontSize: 10,
         textTransform: "uppercase"
     },
+    
     input: {
         borderBottomColor: "#8A8F9E",
         borderBottomWidth: StyleSheet.hairlineWidth,
@@ -118,6 +132,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "#161F3D"
     }, 
+    
     button: {
         marginHorizontal: 30, 
         backgroundColor: "E9446A",
@@ -126,5 +141,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     }
+
 });
 

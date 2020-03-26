@@ -1,5 +1,10 @@
-import React from 'react'
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native"
+import React from 'react';
+import {
+    View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity
+} from "react-native";
 import * as firebase from "firebase";
 
 export default class HomeScreen_2 extends React.Component {
