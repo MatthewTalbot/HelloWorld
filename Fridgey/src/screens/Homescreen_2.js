@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-    View, 
-    Text, 
-    StyleSheet, 
+    View,
+    Text,
+    StyleSheet,
     TouchableOpacity
 } from "react-native";
 import * as firebase from "firebase";
@@ -40,7 +40,7 @@ export default class HomeScreen_2 extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "Center",
+        justifyContent: "center",
         alignItems: "center",
     }
 });

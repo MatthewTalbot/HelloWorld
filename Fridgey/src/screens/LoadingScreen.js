@@ -1,8 +1,8 @@
 import React from 'react'
 import {
-    View, 
-    Text, 
-    StyleSheet, 
+    View,
+    Text,
+    StyleSheet,
     ActivityIndicator
 } from "react-native"
 
@@ -26,7 +26,7 @@ export default class LoadingScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "Center",
+        justifyContent: "center",
         alignItems: "center",
     }
 });

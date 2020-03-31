@@ -1,9 +1,9 @@
-import {createAppContainer, createSwitchNavigator} from 'react-native-navigation'
-import {createStackNavigator} from 'react-native-stack'
-import LoadingScreen from './screens/LoadingScreen'
-import LoginScreen from './screens/LoginScreen'
-import RegisterScreen from './screens/RegisterScreen'
-import HomeScreen from './screens/HomeScreen'
+import {createAppContainer, createSwitchNavigator} from 'react-navigation'
+import {createStackNavigator} from 'react-navigation-stack'
+import LoadingScreen from './src/screens/LoadingScreen'
+import LoginScreen from './src/screens/LoginScreen'
+import RegisterScreen from './src/screens/RegisterScreen'
+import HomeScreen from './src/screens/HomeScreen'
 
 import * as firebase from 'firebase'
 
@@ -30,9 +30,9 @@ import * as firebase from 'firebase'
   });
 
   export default createAppContainer (
-    createSwitchNavigator ( 
+    createSwitchNavigator (
       {
-        Loading: LoadingScreen, 
+        Loading: LoadingScreen,
         App: AppStack,
         Auth: AuthStack
       },
@@ -41,4 +41,3 @@ import * as firebase from 'firebase'
       }
     )
   );
-

@@ -1,14 +1,14 @@
 import React from 'react'
 import {
-    View, 
-    Text, 
-    StyleSheet, 
-    TextInput, 
-    TouchableOpacity 
+    View,
+    Text,
+    StyleSheet,
+    TextInput,
+    TouchableOpacity
 } from "react-native";
 
 import firebase from '@firebase/app'
-// If line above doesn't compline try uncomment and comment below. 
+// If line above doesn't compline try uncomment and comment below.
 //import * as firebase from 'firebase';
 
 export default class LoginScreen extends React.Component {
@@ -40,8 +40,8 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.form}>
                     <View>
                         <Text style={style.inputTitle}>'Email Address'}</Text>
-                        <TextInput 
-                            styles={styles.input} 
+                        <TextInput
+                            styles={styles.input}
                             autoCapitalize="none"
                             onChangeText={email => this.setState({ email })}
                             value={this.state.email}
@@ -50,7 +50,7 @@ export default class LoginScreen extends React.Component {
 
                     <View style={{ marginTop: 32 }}>
                         <Text style={style.inputTitle}>'Passowrd'}</Text>
-                        <TextInput 
+                        <TextInput
                             styles={styles.input}
                             autoCapitalize="none"
                             secureTextEntry
@@ -80,10 +80,10 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    }, 
+    },
     greeting: {
         marginTop: 32,
-        frontSize: 18, 
+        fontSize: 18,
         fontWeight: "400",
         textAlign: "center"
     },
@@ -98,11 +98,11 @@ const styles = StyleSheet.create({
         fontSize: 13,
         fontWeight: "600",
         textAlign: "center"
-    }, 
+    },
     form: {
         marginBottom: 48,
         marginHorizontal: 30
-    }, 
+    },
     inputTitle: {
         color: "#8A8F9E",
         fontSize: 10,
@@ -114,14 +114,13 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 15,
         color: "#161F3D"
-    }, 
+    },
     button: {
-        marginHorizontal: 30, 
-        backgroundColor: "E9446A",
+        marginHorizontal: 30,
+        backgroundColor: 'rgb(233,68,78)',
         borderRadius: 4,
         height: 52,
         alignItems: "center",
         justifyContent: "center"
     }
 });
-
