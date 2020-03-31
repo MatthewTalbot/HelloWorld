@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 
 greeting: {
     marginTop: 32,
-    frontSize: 18,
+    fontSize: 18,
     fontWeight: "400",
     textAlign: "center"
 },
@@ -137,7 +137,7 @@ input: {
 
 button: {
     marginHorizontal: 30,
-    backgroundColor: "E9446A",
+    backgroundColor: "rgb(233,68,78)",
     borderRadius: 4,
     height: 52,
     alignItems: "center",
