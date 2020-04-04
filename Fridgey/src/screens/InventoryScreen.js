@@ -84,8 +84,11 @@ const InventoryScreen = () => {
     }
   };
 
+  const foodNumber = () => itemList.length();
+
   return (
     <View>
+      <Text>{foodNumber}</Text>
       <InventoryDeletion
         visible={isDeleteMode}
         onDeleteItem={deleteItemHandler}

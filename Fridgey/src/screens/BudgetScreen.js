@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text, TextInput, StyleSheet, View } from "react-native";
 import BudgetInput from "../components/Budget/BudgetInput";
-import Card from "../components/Card/Card";
 
 const BudgetScreen = () => {
   const [budget, setBudget] = useState(0);
