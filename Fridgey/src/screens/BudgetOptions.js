@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import EntypoIcon from "react-native-vector-icons/Entypo";
+import MaterialButtonViolet from "../components/MaterialButtonViolet";
+import MaterialButtonViolet1 from "../components/MaterialButtonViolet1";
+import MaterialButtonViolet2 from "../components/MaterialButtonViolet2";
 
 function BudgetOptions(props) {
   return (
@@ -9,13 +12,15 @@ function BudgetOptions(props) {
       <Text style={styles.loremIpsum}></Text>
       <View style={styles.iconRow}>
         <EntypoIcon name="credit" style={styles.icon}></EntypoIcon>
-        <Text style={styles.loremIpsum2}>
-          Create New Budget / View {"\n"}Current Budget
-        </Text>
+        <MaterialButtonViolet
+          style={styles.materialButtonViolet}
+        ></MaterialButtonViolet>
       </View>
       <View style={styles.icon2Row}>
         <EntypoIcon name="block" style={styles.icon2}></EntypoIcon>
-        <Text style={styles.deleteBudget}>Delete Budget</Text>
+        <MaterialButtonViolet1
+          style={styles.materialButtonViolet1}
+        ></MaterialButtonViolet1>
       </View>
       <View style={styles.icon3Row}>
         <EntypoIcon
@@ -32,7 +37,9 @@ function BudgetOptions(props) {
           name="controller-fast-backward"
           style={styles.icon6}
         ></EntypoIcon>
-        <Text style={styles.budgetHistory}>Budget History</Text>
+        <MaterialButtonViolet2
+          style={styles.materialButtonViolet2}
+        ></MaterialButtonViolet2>
       </View>
     </View>
   );
@@ -40,55 +47,54 @@ function BudgetOptions(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "rgba(84,20,209,1)"
   },
   budgetingOptions: {
-    color: "rgba(245,0,0,1)",
+    color: "rgba(247,244,244,1)",
     fontSize: 20,
     fontFamily: "roboto-regular",
-    marginTop: 144,
-    marginLeft: 10
+    marginTop: 118,
+    marginLeft: 15
   },
   loremIpsum: {
     color: "#121212",
     fontFamily: "roboto-regular",
-    marginTop: -58,
+    marginTop: -32,
     marginLeft: 75
   },
   icon: {
     color: "rgba(128,128,128,1)",
     fontSize: 40
   },
-  loremIpsum2: {
-    color: "rgba(245,0,0,1)",
-    fontSize: 20,
-    fontFamily: "roboto-regular",
-    marginLeft: 20
+  materialButtonViolet: {
+    width: 255,
+    height: 36,
+    marginLeft: 13,
+    marginTop: 4
   },
   iconRow: {
     height: 40,
     flexDirection: "row",
     marginTop: 96,
     marginLeft: 15,
-    marginRight: 58
+    marginRight: 52
   },
   icon2: {
     color: "rgba(128,128,128,1)",
     fontSize: 40
   },
-  deleteBudget: {
-    color: "rgba(245,0,0,1)",
-    fontSize: 20,
-    fontFamily: "roboto-regular",
-    marginLeft: 20,
-    marginTop: 10
+  materialButtonViolet1: {
+    width: 255,
+    height: 36,
+    marginLeft: 13
   },
   icon2Row: {
     height: 40,
     flexDirection: "row",
     marginTop: 60,
     marginLeft: 15,
-    marginRight: 176
+    marginRight: 52
   },
   icon3: {
     color: "rgba(128,128,128,1)",
@@ -110,19 +116,17 @@ const styles = StyleSheet.create({
     color: "rgba(128,128,128,1)",
     fontSize: 40
   },
-  budgetHistory: {
-    color: "rgba(245,0,0,1)",
-    fontSize: 20,
-    fontFamily: "roboto-regular",
-    marginLeft: 20,
-    marginTop: 10
+  materialButtonViolet2: {
+    width: 255,
+    height: 36,
+    marginLeft: 13
   },
   icon6Row: {
     height: 40,
     flexDirection: "row",
     marginTop: 325,
     marginLeft: 15,
-    marginRight: 168
+    marginRight: 52
   }
 });
 

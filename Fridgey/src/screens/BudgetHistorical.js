@@ -21,7 +21,8 @@ function BudgetHistorical(props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "rgba(84,20,209,1)"
   },
   icon: {
     color: "rgba(128,128,128,1)",
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     marginLeft: 311
   },
   historicalMonths: {
-    color: "rgba(41,14,202,1)",
+    color: "rgba(239,239,241,1)",
     fontSize: 20,
     fontFamily: "alef-regular",
     marginTop: 39,
