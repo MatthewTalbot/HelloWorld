@@ -14,7 +14,7 @@ const activeColor = "#4775f2";
 const inactiveColor = "#b8bece";
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -25,12 +25,12 @@ HomeStack.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const RecipePage = createStackNavigator({
   Recipe: RecipeScreen,
-  RecipeFull: RecipeFullCard
+  RecipeFull: RecipeFullCard,
 });
 
 RecipePage.navigationOptions = {
@@ -41,11 +41,11 @@ RecipePage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const BudgetPage = createStackNavigator({
-  Budget: BudgetScreen
+  Budget: BudgetScreen,
 });
 
 BudgetPage.navigationOptions = {
@@ -56,11 +56,11 @@ BudgetPage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const InventoryPage = createStackNavigator({
-  Inventory: InventoryScreen
+  Inventory: InventoryScreen,
 });
 
 InventoryPage.navigationOptions = {
@@ -71,14 +71,14 @@ InventoryPage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const TabNavigator = createBottomTabNavigator({
   HomeStack,
   RecipePage,
   BudgetPage,
-  InventoryPage
+  InventoryPage,
 });
 
 export default TabNavigator;

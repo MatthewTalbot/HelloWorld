@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 class RecipeFullCard extends React.Component {
   static navigationOptions = {
-    headerShown: false
+    headerShown: false,
   };
 
   componentDidMount() {
@@ -24,12 +24,13 @@ class RecipeFullCard extends React.Component {
       <Container>
         <StatusBar hidden />
         <Cover>
-          <Image source={recipeFull.image} />
-          <Title>{recipeFull.title}</Title>
+          <Image source={{ uri: recipeFull.recipe.image }} />
+          <Title>{recipeFull.recipe.label}</Title>
         </Cover>
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.goBack();
+            console.log();
           }}
           style={{ position: "absolute", top: 20, right: 20 }}
         >
@@ -43,7 +44,8 @@ class RecipeFullCard extends React.Component {
           </CloseView>
         </TouchableOpacity>
         <Recipe>
-          <Text>{recipeFull.ingrediants}</Text>
+          <Subtitle> Ingrediants </Subtitle>
+          <Text>{recipeFull.recipe.ingredientLines}</Text>
         </Recipe>
       </Container>
     );
@@ -104,7 +106,7 @@ const Logo = styled.Image`
 const Subtitle = styled.Text`
   font-size: 15px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: blue;
   margin-left: 5px;
   text-transform: uppercase;
 `;

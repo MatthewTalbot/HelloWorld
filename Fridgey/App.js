@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import AppNavigation from "./src/components/Navigation/AppNavigation";
 
 const initialState = {
-  action: ""
+  action: "",
 };
 
 const reducer = (state = initialState, action) => {

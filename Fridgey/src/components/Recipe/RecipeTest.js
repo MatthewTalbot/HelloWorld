@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { TouchableOpacity } from "react-native";
+import { withNavigation } from "react-navigation";
 
 import Card from "../Card/Card";
 
@@ -11,11 +12,14 @@ const API =
 var URI;
 
 class RecipeTest extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
   constructor(props) {
     super(props);
 
     this.state = {
-      hits: []
+      hits: [],
     };
   }
   queryBuilder() {
@@ -49,8 +53,8 @@ class RecipeTest extends React.Component {
     var query = this.queryBuilder();
 
     fetch(query)
-      .then(response => response.json())
-      .then(data => this.setState({ hits: data.hits }));
+      .then((response) => response.json())
+      .then((data) => this.setState({ hits: data.hits }));
   }
 
   componentDidMount() {
@@ -67,17 +71,24 @@ class RecipeTest extends React.Component {
   }
   render() {
     const { hits } = this.state;
-    return hits.map(hit => (
-      <TouchableOpacity key={hit.recipe.label}>
+    return hits.map((hit) => (
+      <TouchableOpacity
+        key={hit.recipe.label}
+        onPress={() => {
+          this.props.navigation.push("RecipeFull", {
+            recipeFull: hit,
+          });
+        }}
+      >
         <Card
           key={hit.recipe.label}
           title={hit.recipe.label}
           image={{ uri: hit.recipe.image }}
-          //ingrediants={recipe.recipe.ingrediantLines}
+          ingrediants={hit.recipe.ingrediantLines}
         />
       </TouchableOpacity>
     ));
   }
 }
 
-export default RecipeTest;
+export default withNavigation(RecipeTest);
