@@ -2,10 +2,9 @@ import React from "react";
 import {
   ScrollView,
   SafeAreaView,
-  TouchableOpacity,
   Animated,
   Easing,
-  StatusBar
+  StatusBar,
 } from "react-native";
 import styled from "styled-components";
 import Menu from "../components/Menu/Menu";
@@ -21,28 +20,27 @@ function mapDispatchToProps(dispatch) {
   return {
     openMenu: () =>
       dispatch({
-        type: "OPEN_MENU"
-      })
+        type: "OPEN_MENU",
+      }),
   };
 }
 
 class RecipeScreen extends React.Component {
   static navigationOptions = {
-    headerShown: false
+    headerShown: false,
   };
   state = {
     scale: new Animated.Value(1),
     opacity: new Animated.Value(1),
-    SearchString: null
+    SearchString: null,
   };
 
-  filterCallback = filter => {
+  filterCallback = (filter) => {
     this.setState({ Filter: filter });
   };
 
-  searchCallback = searchString => {
+  searchCallback = (searchString) => {
     this.setState({ SearchString: searchString });
-    //  console.log("This is the string: " + searchString);
   };
 
   componentDidMount() {
@@ -58,10 +56,10 @@ class RecipeScreen extends React.Component {
       Animated.timing(this.state.scale, {
         toValue: 0.9,
         duration: 300,
-        easing: Easing.in()
+        easing: Easing.in(),
       }).start();
       Animated.spring(this.state.opacity, {
-        toValue: 0.5
+        toValue: 0.5,
       }).start();
 
       StatusBar.setBarStyle("light-content", true);
@@ -71,10 +69,10 @@ class RecipeScreen extends React.Component {
       Animated.timing(this.state.scale, {
         toValue: 1,
         duration: 300,
-        easing: Easing.in()
+        easing: Easing.in(),
       }).start();
       Animated.spring(this.state.opacity, {
-        toValue: 1
+        toValue: 1,
       }).start();
 
       StatusBar.setBarStyle("dark-content", true);
@@ -89,7 +87,7 @@ class RecipeScreen extends React.Component {
         <AnimatedContainer
           style={{
             transform: [{ scale: this.state.scale }],
-            opacity: this.state.opacity
+            opacity: this.state.opacity,
           }}
         >
           <SafeAreaView>

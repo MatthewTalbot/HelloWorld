@@ -9,6 +9,7 @@ import InventoryScreen from "../../screens/InventoryScreen";
 import RecipeScreen from "../../screens/RecipeScreen";
 import TabNavigator from "./TabNavigator";
 import RecipeFullCard from "../../screens/RecipeFullCard";
+import RecipeTest from "../Recipe/RecipeTest";
 
 const navigator = createStackNavigator(
   {
@@ -16,13 +17,14 @@ const navigator = createStackNavigator(
     Budget: BudgetScreen,
     Inventory: InventoryScreen,
     Recipe: RecipeScreen,
-    RecipeFull: RecipeFullCard
+    RecipeFull: RecipeFullCard,
+    RecipeComponent: RecipeTest,
   },
   {
     initialRouteName: "Home",
     defaultNavigationOptions: {
-      title: "App"
-    }
+      title: "App",
+    },
   }
 );
 

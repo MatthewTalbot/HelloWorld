@@ -11,12 +11,12 @@ const BudgetScreen = () => {
       <Text>Enter Monthly Budget</Text>
       <BudgetInput
         budget={budget}
-        onBudgetChange={newBudget => setBudget(newBudget)}
+        onBudgetChange={(newBudget) => setBudget(newBudget)}
         display="Budget"
       />
       <BudgetInput
         budget={spending}
-        onBudgetChange={newSpending => setSpending(newSpending)}
+        onBudgetChange={(newSpending) => setSpending(newSpending)}
         onBudgetSubmit={() => setBudget(budget - spending)}
         display="Spent on Food"
       />
