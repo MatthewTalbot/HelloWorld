@@ -25,9 +25,7 @@ export const login = () => {
           const state = getState();
           const { email, password } = getState().user
           const response = await Firebase.auth().signInWithEmailAndPassword(email, password)
-          const user = getUser(response.user.uid)
-          console.log(user)
-          dispatch(user)
+          dispatch(getUser(response.user.uid))
         } catch (e) {
             console.log(e)
         }
