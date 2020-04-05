@@ -1,5 +1,8 @@
 import React from "react";
+import {createSwitchNavigator} from "react-navigation"
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import Login from "../../screens/Login"
+import Signup from "../../screens/Signup"
 import HomeScreen from "../../screens/HomeScreen";
 import BudgetScreen from "../../screens/BudgetScreen";
 import InventoryScreen from "../../screens/InventoryScreen";
@@ -74,11 +77,16 @@ InventoryPage.navigationOptions = {
   )
 };
 
-const TabNavigator = createBottomTabNavigator({
-  HomeStack,
-  RecipePage,
-  BudgetPage,
-  InventoryPage
-});
-
+const TabNavigator = createSwitchNavigator({
+  authenticationFlow: createStackNavigator({
+    Login: Login,
+    Signup: Signup
+  }),
+  applicationFlow: createBottomTabNavigator({
+    HomeStack,
+    RecipePage,
+    BudgetPage,
+    InventoryPage
+  })
+})
 export default TabNavigator;

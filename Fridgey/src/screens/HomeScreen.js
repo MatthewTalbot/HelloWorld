@@ -9,6 +9,7 @@ import {
   Text,
   disableYellowBox
 } from "react-native";
+import Firebase from "../../config/Firebase"
 import styled from "styled-components";
 import HomeScreenCard from "../components/Card/HomeScreenCard";
 import Menu from "../components/Menu/Menu";
@@ -29,6 +30,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 class HomeScreen extends React.Component {
+
+  handleSignout = () => {
+    Firebase.auth().signOut()
+    this.props.navigation.navigate('authenticationFlow')
+  }
   static navigationOptions = {
     headerShown: false
   };
@@ -132,6 +138,9 @@ class HomeScreen extends React.Component {
                   No data
                 </Text>
               </Budget>
+            <TouchableOpacity onPress = {this.handleSignout}>
+              <Text>SignOut</Text>
+            </TouchableOpacity>
             </ScrollView>
           </SafeAreaView>
         </AnimatedContainer>
