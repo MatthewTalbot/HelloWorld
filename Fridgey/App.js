@@ -1,24 +1,12 @@
 import React from "react";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk"
 import AppNavigation from "./src/components/Navigation/AppNavigation";
+import reducer from "./reducers"
 
-const initialState = {
-  action: ""
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case "OPEN_MENU":
-      return { action: "openMenu" };
-    case "CLOSE_MENU":
-      return { action: "closeMenu" };
-    default:
-      return state;
-  }
-};
-
-const store = createStore(reducer);
+const middleware = applyMiddleware(thunkMiddleware)
+const store = createStore(reducer, middleware)
 
 const App = () => (
   <Provider store={store}>
