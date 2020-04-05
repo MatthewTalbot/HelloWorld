@@ -30,7 +30,6 @@ class RecipeFullCard extends React.Component {
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.goBack();
-            console.log();
           }}
           style={{ position: "absolute", top: 20, right: 20 }}
         >

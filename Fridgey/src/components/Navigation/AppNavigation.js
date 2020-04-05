@@ -10,6 +10,7 @@ import RecipeScreen from "../../screens/RecipeScreen";
 import TabNavigator from "./TabNavigator";
 import RecipeFullCard from "../../screens/RecipeFullCard";
 import RecipeTest from "../Recipe/RecipeTest";
+import SignInOut from "../../screens/SignInOut";
 
 const navigator = createStackNavigator(
   {
@@ -19,6 +20,7 @@ const navigator = createStackNavigator(
     Recipe: RecipeScreen,
     RecipeFull: RecipeFullCard,
     RecipeComponent: RecipeTest,
+    InOut: SignInOut,
   },
   {
     initialRouteName: "Home",
