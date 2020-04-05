@@ -112,7 +112,7 @@ class RecipeScreen extends React.Component {
                 style={{ paddingBottom: 30 }}
                 showsHorizontalScrollIndicator={false}
               >
-                <RecipeTest query={"apple"} />
+                <RecipeTest query={"random"} />
               </ScrollView>
             </ScrollView>
           </SafeAreaView>

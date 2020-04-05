@@ -40,6 +40,7 @@ class HomeScreen extends React.Component {
   state = {
     scale: new Animated.Value(1),
     opacity: new Animated.Value(1),
+    BudgetValue: "$100",
   };
 
   componentDidMount() {
@@ -49,6 +50,10 @@ class HomeScreen extends React.Component {
   componentDidUpdate() {
     this.toggleMenu();
   }
+
+  budgetCallback = (budgetValue) => {
+    this.setState({ BudgetValue: budgetValue });
+  };
 
   toggleMenu = () => {
     if (this.props.action == "openMenu") {
@@ -125,7 +130,7 @@ class HomeScreen extends React.Component {
                   style={{ color: "#4775f2", fontSize: 40, fontWeight: "600" }}
                 >
                   {" "}
-                  $30 left to spend
+                  {this.state.BudgetValue}
                 </Text>
               </Budget>
               <Subtitle>Inventory</Subtitle>
@@ -134,7 +139,7 @@ class HomeScreen extends React.Component {
                   style={{ color: "#4775f2", fontSize: 40, fontWeight: "600" }}
                 >
                   {" "}
-                  No data
+                  13 items
                 </Text>
               </Budget>
             </ScrollView>
