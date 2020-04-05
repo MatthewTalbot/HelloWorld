@@ -5,15 +5,15 @@ import { SearchBar } from "react-native-elements";
 class Search extends React.Component {
   state = {
     search: "",
-    e: ""
+    e: "",
   };
 
-  updateSearch = search => {
+  updateSearch = (search) => {
     this.props.searchCallback(search);
     this.setState({ search });
   };
 
-  handleFilter = e => {
+  handleFilter = (e) => {
     this.props.filterCallback(e);
     this.setState({ e });
   };
@@ -28,15 +28,15 @@ class Search extends React.Component {
               backgroundColor: "transparent",
               borderBottomColor: "transparent",
               borderTopColor: "transparent",
-              flex: 1
+              flex: 1,
             }}
             inputContainerStyle={{
-              backgroundColor: "#EDEDED"
+              backgroundColor: "#EDEDED",
             }}
             inputStyle={{
               backgroundColor: "#EDEDED",
               borderRadius: 10,
-              color: "black"
+              color: "black",
             }}
             placeholder="Search"
             onChangeText={this.updateSearch}

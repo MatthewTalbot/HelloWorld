@@ -1,5 +1,8 @@
 import React from "react";
+import { createSwitchNavigator } from "react-navigation";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import Login from "../../screens/Login";
+import Signup from "../../screens/Signup";
 import HomeScreen from "../../screens/HomeScreen";
 import BudgetScreen from "../../screens/BudgetScreen";
 import InventoryScreen from "../../screens/InventoryScreen";
@@ -9,12 +12,13 @@ import RecipeFullCard from "../../screens/RecipeFullCard";
 import { Ionicons } from "@expo/vector-icons";
 
 import { createStackNavigator } from "react-navigation-stack";
+import SignInOut from "../../screens/SignInOut";
 
 const activeColor = "#4775f2";
 const inactiveColor = "#b8bece";
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen
+  Home: HomeScreen,
 });
 
 HomeStack.navigationOptions = {
@@ -25,12 +29,12 @@ HomeStack.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const RecipePage = createStackNavigator({
   Recipe: RecipeScreen,
-  RecipeFull: RecipeFullCard
+  RecipeFull: RecipeFullCard,
 });
 
 RecipePage.navigationOptions = {
@@ -41,11 +45,11 @@ RecipePage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const BudgetPage = createStackNavigator({
-  Budget: BudgetScreen
+  Budget: BudgetScreen,
 });
 
 BudgetPage.navigationOptions = {
@@ -56,11 +60,11 @@ BudgetPage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
 const InventoryPage = createStackNavigator({
-  Inventory: InventoryScreen
+  Inventory: InventoryScreen,
 });
 
 InventoryPage.navigationOptions = {
@@ -71,14 +75,35 @@ InventoryPage.navigationOptions = {
       size={20}
       color={focused ? activeColor : inactiveColor}
     />
-  )
+  ),
 };
 
-const TabNavigator = createBottomTabNavigator({
-  HomeStack,
-  RecipePage,
-  BudgetPage,
-  InventoryPage
+const InOutPage = createStackNavigator({
+  InOut: SignInOut,
 });
 
+InOutPage.navigationOptions = {
+  tabBarLabel: "Sign Out",
+  tabBarIcon: ({ focused }) => (
+    <Ionicons
+      name="ios-close-circle"
+      size={20}
+      color={focused ? activeColor : inactiveColor}
+    />
+  ),
+};
+
+const TabNavigator = createSwitchNavigator({
+  authenticationFlow: createStackNavigator({
+    Login: Login,
+    Signup: Signup,
+  }),
+  applicationFlow: createBottomTabNavigator({
+    HomeStack,
+    RecipePage,
+    BudgetPage,
+    InventoryPage,
+    InOutPage,
+  }),
+});
 export default TabNavigator;

@@ -7,8 +7,9 @@ import {
   Easing,
   StatusBar,
   Text,
-  disableYellowBox
+  disableYellowBox,
 } from "react-native";
+import Firebase from "../../config/Firebase";
 import styled from "styled-components";
 import HomeScreenCard from "../components/Card/HomeScreenCard";
 import Menu from "../components/Menu/Menu";
@@ -23,18 +24,23 @@ function mapDispatchToProps(dispatch) {
   return {
     openMenu: () =>
       dispatch({
-        type: "OPEN_MENU"
-      })
+        type: "OPEN_MENU",
+      }),
   };
 }
 
 class HomeScreen extends React.Component {
+  handleSignout = () => {
+    Firebase.auth().signOut();
+    this.props.navigation.navigate("authenticationFlow");
+  };
   static navigationOptions = {
-    headerShown: false
+    headerShown: false,
   };
   state = {
     scale: new Animated.Value(1),
-    opacity: new Animated.Value(1)
+    opacity: new Animated.Value(1),
+    BudgetValue: "$100",
   };
 
   componentDidMount() {
@@ -45,15 +51,19 @@ class HomeScreen extends React.Component {
     this.toggleMenu();
   }
 
+  budgetCallback = (budgetValue) => {
+    this.setState({ BudgetValue: budgetValue });
+  };
+
   toggleMenu = () => {
     if (this.props.action == "openMenu") {
       Animated.timing(this.state.scale, {
         toValue: 0.9,
         duration: 300,
-        easing: Easing.in()
+        easing: Easing.in(),
       }).start();
       Animated.spring(this.state.opacity, {
-        toValue: 0.5
+        toValue: 0.5,
       }).start();
 
       StatusBar.setBarStyle("light-content", true);
@@ -63,10 +73,10 @@ class HomeScreen extends React.Component {
       Animated.timing(this.state.scale, {
         toValue: 1,
         duration: 300,
-        easing: Easing.in()
+        easing: Easing.in(),
       }).start();
       Animated.spring(this.state.opacity, {
-        toValue: 1
+        toValue: 1,
       }).start();
 
       StatusBar.setBarStyle("dark-content", true);
@@ -80,7 +90,7 @@ class HomeScreen extends React.Component {
         <AnimatedContainer
           style={{
             transform: [{ scale: this.state.scale }],
-            opacity: this.state.opacity
+            opacity: this.state.opacity,
           }}
         >
           <SafeAreaView>
@@ -120,7 +130,7 @@ class HomeScreen extends React.Component {
                   style={{ color: "#4775f2", fontSize: 40, fontWeight: "600" }}
                 >
                   {" "}
-                  $30 left to spend
+                  {this.state.BudgetValue}
                 </Text>
               </Budget>
               <Subtitle>Inventory</Subtitle>
@@ -129,7 +139,7 @@ class HomeScreen extends React.Component {
                   style={{ color: "#4775f2", fontSize: 40, fontWeight: "600" }}
                 >
                   {" "}
-                  No data
+                  13 items
                 </Text>
               </Budget>
             </ScrollView>
@@ -208,14 +218,12 @@ const cards = [
     title: "Salmon & Asparagus",
     image: require("../../assets/background15.jpg"),
     ingrediants:
-      "Ingrediants \n 1 recipe pastry for a 9 inch double crust pie  \n½ cup unsalted butter \n3 tablespoons all-purpose flour \n¼ cup of water \n½ cup of white sugar \n½ cup packed brown sugar \n8 Granny Smith apples - peeled, cored and sliced"
+      "Ingrediants \n 1 recipe pastry for a 9 inch double crust pie  \n½ cup unsalted butter \n3 tablespoons all-purpose flour \n¼ cup of water \n½ cup of white sugar \n½ cup packed brown sugar \n8 Granny Smith apples - peeled, cored and sliced",
   },
   {
     title: "Lemon Garlic Butter Chicken and Green Beans Skillet",
     image: require("../../assets/background16.jpg"),
     ingrediants:
-      " Ingrediants \n 16 oz elbow macaroni, cooked (or other tubular pasta)\n1 tbsp extra virgin olive oil\n6 tbsp unsalted butter\n1/3 cup all purpose flour\n3 cups whole milk\n1 cup heavy whipping cream\n4 cups sharp cheddar cheese shredded\n2 cups Gruyere cheese shredded\nsalt and pepper to taste\n1 1/2 cups panko crumbs\n4 tbsp butter melted\n1/2 cup Parmesan cheese shredded\n1/4 tsp smoked paprika (or regular paprika)"
-  }
+      " Ingrediants \n 16 oz elbow macaroni, cooked (or other tubular pasta)\n1 tbsp extra virgin olive oil\n6 tbsp unsalted butter\n1/3 cup all purpose flour\n3 cups whole milk\n1 cup heavy whipping cream\n4 cups sharp cheddar cheese shredded\n2 cups Gruyere cheese shredded\nsalt and pepper to taste\n1 1/2 cups panko crumbs\n4 tbsp butter melted\n1/2 cup Parmesan cheese shredded\n1/4 tsp smoked paprika (or regular paprika)",
+  },
 ];
-
-const courses = [];
